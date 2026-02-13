@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Provider Slot Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Provider Slot Manager</h1>
+        <p class="description">Manage your availability slots.</p>
+
+        <div class="input-group">
+            <label for="providerName">Provider Name:</label>
+            <input type="text" id="providerName" placeholder="e.g. Dr. Smith">
+        </div>
+
+        <div class="input-group">
+            <label for="startTime">Start Time:</label>
+            <input type="text" id="startTime" placeholder="YYYY-MM-DDTHH:MM">
+        </div>
+
+        <div class="input-group">
+            <label for="endTime">End Time:</label>
+            <input type="text" id="endTime" placeholder="YYYY-MM-DDTHH:MM">
+        </div>
+
+        <div class="button-group">
+            <button id="btnValidate" class="btn primary">Validate & Create</button>
+            <button id="btnCheckFilled" class="btn secondary">Check Completeness</button>
+        </div>
+
+        <div class="output-area">
+            <h3>Status:</h3>
+            <p id="output">Ready to process...</p>
+        </div>
+
+        <!-- Added Table for Displaying Slots -->
+        <div class="table-container">
+            <h3>Current Slots</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Provider</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="slotTableBody">
+                    <!-- Rows will be added here dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "ppa4",
+  "version": "1.0.0",
+  "description": "PPA4: Enhancing Client-Side Interaction",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
