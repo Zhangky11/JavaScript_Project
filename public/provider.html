@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Provider Calendar</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<div class="calendarPage">
+
+  <h1 id="monthTitle"></h1>
+  <div id="message"></div>
+
+  <!-- Form to create a new slot -->
+  <section id="createSlotPanel" class="createCard">
+    <h2>Create a slot</h2>
+    <div class="formRow">
+      <label>
+        Start time
+        <input type="datetime-local" id="startTimeInput" placeholder="2026-03-01T09:00">
+      </label>
+      <label>
+        End time
+        <input type="datetime-local" id="endTimeInput" placeholder="2026-03-01T09:30">
+      </label>
+      <button id="createSlotButton" class="btn primary">Create slot</button>
+    </div>
+  </section>
+
+  <!-- Monthly calendar grid -->
+  <section>
+    <h2>Month view</h2>
+    <!-- Day-of-week header row -->
+    <div id="dayHeaders" class="dayHeaders">
+      <div class="dayHeaderCell">Sun</div>
+      <div class="dayHeaderCell">Mon</div>
+      <div class="dayHeaderCell">Tue</div>
+      <div class="dayHeaderCell">Wed</div>
+      <div class="dayHeaderCell">Thu</div>
+      <div class="dayHeaderCell">Fri</div>
+      <div class="dayHeaderCell">Sat</div>
+    </div>
+    <div id="calendarGrid"></div>
+  </section>
+
+</div>
+<script src="/provider.js"></script>
+</html>

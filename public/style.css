@@ -97,3 +97,171 @@ th, td {
 th {
     background-color: #f2f2f2;
 }
+
+/* ============================================================
+   PPA 5 Provider Calendar — beautiful design
+   ============================================================ */
+
+/* Content wrapper — centered, max width for readability */
+.calendarPage {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 24px;
+}
+
+/* Month title — clean, prominent header */
+.calendarPage h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+}
+
+/* Create slot card — soft shadow, rounded corners */
+.createCard {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 28px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.createCard h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #334155;
+    margin: 0 0 20px 0;
+}
+
+/* Form row — inputs and button side by side */
+.formRow {
+    display: flex;
+    gap: 16px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.formRow label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #475569;
+    flex: 1;
+    min-width: 180px;
+}
+
+.formRow input {
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.formRow input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* Month view section */
+.calendarPage section:last-of-type h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 12px;
+}
+
+/* Day headers (Sun, Mon, Tue...) — align with grid */
+.dayHeaders {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.dayHeaderCell {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* Calendar grid — 7 equal columns */
+#calendarGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+/* Day cells — clean cards with subtle shadow */
+.dayCell {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 10px 12px;
+    min-height: 120px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.dayCell:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Cells outside current month — muted */
+.dayCell.empty {
+    background: #f1f5f9;
+    border-color: #e2e8f0;
+}
+
+/* Day number badge */
+.dayNumber {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #475569;
+    margin-bottom: 8px;
+}
+
+/* Appointment slots — pill-like, readable */
+.slotItem {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border: 1px solid #bfdbfe;
+    border-radius: 6px;
+    padding: 6px 8px;
+    margin-bottom: 6px;
+    font-size: 0.8rem;
+    color: #1e40af;
+}
+
+/* Message styles */
+.ok {
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    color: #065f46;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.error {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #991b1b;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Today — stands out with blue accent */
+.today {
+    outline: 3px solid #3b82f6;
+    outline-offset: -1px;
+    box-shadow: 0 0 0 1px #3b82f6;
+}

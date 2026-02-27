@@ -79,7 +79,8 @@ const server = http.createServer(function (req, res) {
     }
 
     if (req.method === "POST" && pathname === "/api/slots") {
-        const providerName = query.providerName;
+        // providerName is optional for PPA 5 provider calendar (uses default)
+        const providerName = query.providerNProviderame || "";
         const startTime = query.startTime;
         const endTime = query.endTime;
 
@@ -87,11 +88,6 @@ const server = http.createServer(function (req, res) {
         console.log(`[DEBUG] provider:  '${providerName}'`);
         console.log(`[DEBUG] startTime: '${startTime}'`);
         console.log(`[DEBUG] endTime:   '${endTime}'`);
-
-        if (!providerName) {
-            sendJson(res, 400, { error: "providerName is required" });
-            return;
-        }
 
         const result = validateSlotTimes(startTime, endTime);
 
