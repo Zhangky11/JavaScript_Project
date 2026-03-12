@@ -238,6 +238,9 @@ th {
     margin-bottom: 6px;
     font-size: 0.8rem;
     color: #1e40af;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 /* Message styles */
@@ -264,4 +267,53 @@ th {
     outline: 3px solid #3b82f6;
     outline-offset: -1px;
     box-shadow: 0 0 0 1px #3b82f6;
+}
+
+/* Multi-day appointment: start segment — rounded left, extends to right edge */
+.slotItem.slotStart {
+    border-radius: 6px 0 0 6px;
+    margin-right: -12px;
+    padding-right: 20px;
+    border-right: none;
+}
+
+/* Multi-day appointment: middle segment — flat both sides, extends to both edges */
+.slotItem.slotMiddle {
+    border-radius: 0;
+    margin-left: -12px;
+    margin-right: -12px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-left: none;
+    border-right: none;
+    text-align: center;
+}
+
+/* Multi-day appointment: end segment — rounded right, extends to left edge */
+.slotItem.slotEnd {
+    border-radius: 0 6px 6px 0;
+    margin-left: -12px;
+    padding-left: 20px;
+    border-left: none;
+}
+
+/* Delete button inside slot items */
+.deleteBtn {
+    background: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 0.75rem;
+    line-height: 18px;
+    text-align: center;
+    padding: 0;
+    cursor: pointer;
+    margin-left: 4px;
+    flex-shrink: 0;
+}
+
+.deleteBtn:hover {
+    background: #dc2626;
 }

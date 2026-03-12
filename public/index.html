@@ -1,61 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Provider Slot Manager</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<title>Provider Calendar</title>
+<link rel="stylesheet" href="/style.css">
 </head>
-<body>
-    <div class="container">
-        <h1>Provider Slot Manager</h1>
-        <p class="description">Manage your availability slots.</p>
+<div class="calendarPage">
 
-        <div class="input-group">
-            <label for="providerName">Provider Name:</label>
-            <input type="text" id="providerName" placeholder="e.g. Dr. Smith">
-        </div>
+  <h1 id="monthTitle"></h1>
+  <div id="message"></div>
 
-        <div class="input-group">
-            <label for="startTime">Start Time:</label>
-            <input type="text" id="startTime" placeholder="YYYY-MM-DDTHH:MM">
-        </div>
-
-        <div class="input-group">
-            <label for="endTime">End Time:</label>
-            <input type="text" id="endTime" placeholder="YYYY-MM-DDTHH:MM">
-        </div>
-
-        <div class="button-group">
-            <button id="btnValidate" class="btn primary">Validate & Create</button>
-            <button id="btnCheckFilled" class="btn secondary">Check Completeness</button>
-        </div>
-
-        <div class="output-area">
-            <h3>Status:</h3>
-            <p id="output">Ready to process...</p>
-        </div>
-
-        <!-- Added Table for Displaying Slots -->
-        <div class="table-container">
-            <h3>Current Slots</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Provider</th>
-                        <th>Start Time</th>
-                        <th>End Time</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody id="slotTableBody">
-                    <!-- Rows will be added here dynamically -->
-                </tbody>
-            </table>
-        </div>
+  <!-- Form to create a new slot -->
+  <section id="createSlotPanel" class="createCard">
+    <h2>Create a slot</h2>
+    <div class="formRow">
+      <label>
+        Start time
+        <input type="datetime-local" id="startTimeInput" placeholder="2026-03-01T09:00">
+      </label>
+      <label>
+        End time
+        <input type="datetime-local" id="endTimeInput" placeholder="2026-03-01T09:30">
+      </label>
+      <button id="createSlotButton" class="btn primary">Create slot</button>
     </div>
+  </section>
 
-    <script src="script.js"></script>
-</body>
+  <!-- Monthly calendar grid -->
+  <section>
+    <h2>Month view</h2>
+    <!-- Day-of-week header row -->
+    <div id="dayHeaders" class="dayHeaders">
+      <div class="dayHeaderCell">Sun</div>
+      <div class="dayHeaderCell">Mon</div>
+      <div class="dayHeaderCell">Tue</div>
+      <div class="dayHeaderCell">Wed</div>
+      <div class="dayHeaderCell">Thu</div>
+      <div class="dayHeaderCell">Fri</div>
+      <div class="dayHeaderCell">Sat</div>
+    </div>
+    <div id="calendarGrid"></div>
+  </section>
+
+</div>
+<script src="/script.js"></script>
 </html>
