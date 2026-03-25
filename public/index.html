@@ -7,13 +7,34 @@
 </head>
 <div class="calendarPage">
 
-  <h1 id="monthTitle"></h1>
+
+  <!-- Prev and Next month buttons -->
+  <section class="monthHeader">
+    <button id="prevMonthBtn" class="navBtn">◀</button>
+    <h1 id="monthTitle"></h1>
+    <button id="nextMonthBtn" class="navBtn">▶</button>
+  </section>
   <div id="message"></div>
 
   <!-- Form to create a new slot -->
   <section id="createSlotPanel" class="createCard">
     <h2>Create a slot</h2>
-    <div class="formRow">
+    <div class="formRow formRowCompact">
+      <label>
+        Title
+        <input type="text" id="titleInput" placeholder="Appointment title" required>
+      </label>
+      <label>
+        Status
+        <select id="createStatusInput">
+          <option value="available">Available</option>
+          <option value="booked">Booked</option>
+          <option value="ooo">Out of office</option>
+        </select>
+      </label>
+      <button id="createSlotButton" class="btn primary">Create slot</button>
+    </div>
+    <div class="formRow formRowDateTimes">
       <label>
         Start time
         <input type="datetime-local" id="startTimeInput" placeholder="2026-03-01T09:00">
@@ -22,13 +43,55 @@
         End time
         <input type="datetime-local" id="endTimeInput" placeholder="2026-03-01T09:30">
       </label>
-      <button id="createSlotButton" class="btn primary">Create slot</button>
+    </div>
+    <div class="formRow">
+      <label>
+        Description
+        <input type="text" id="descriptionInput" placeholder="Description">
+      </label>
+      <label>
+        Attendees (optional)
+        <input type="text" id="attendeesInput" placeholder="e.g. Alex, Sam">
+      </label>
+      <label>
+        Repeat
+        <select id="recurringInput">
+          <option value="none">No repeat</option>
+          <option value="weekly">Weekly</option>
+          <option value="monthly">Monthly</option>
+        </select>
+      </label>
+      <label>
+        How many times (max 12)
+        <input type="number" id="recurringCountInput" min="1" max="12" value="1">
+      </label>
     </div>
   </section>
+
 
   <!-- Monthly calendar grid -->
   <section>
     <h2>Month view</h2>
+    <div class="calendarToolbar">
+      <label class="searchLabel">
+        Search
+        <input type="search" id="searchInput" placeholder="Title or description…">
+      </label>
+      <label class="filterLabel">
+        Status filter
+        <select id="statusFilterInput">
+          <option value="all">All</option>
+          <option value="available">Available</option>
+          <option value="booked">Booked</option>
+          <option value="ooo">Out of office</option>
+        </select>
+      </label>
+    </div>
+    <div class="statusLegend" aria-label="Status colors">
+      <span class="legendItem"><span class="legendSwatch available"></span> Available</span>
+      <span class="legendItem"><span class="legendSwatch booked"></span> Booked</span>
+      <span class="legendItem"><span class="legendSwatch ooo"></span> Out of office</span>
+    </div>
     <!-- Day-of-week header row -->
     <div id="dayHeaders" class="dayHeaders">
       <div class="dayHeaderCell">Sun</div>
@@ -42,6 +105,35 @@
     <div id="calendarGrid"></div>
   </section>
 
+  <!-- Modal: view and edit appointment -->
+  <div id="appointmentModal" class="modal" aria-hidden="true">
+    <div class="modalBackdrop" id="modalBackdrop"></div>
+    <div class="modalContent" role="dialog" aria-labelledby="modalTitle">
+      <div class="modalHeader">
+        <h2 id="modalTitle">Appointment details</h2>
+        <button type="button" class="modalClose" id="modalClose" aria-label="Close">&times;</button>
+      </div>
+      <div class="modalBody">
+        <label>Title <input type="text" id="modalTitleInput"></label>
+        <label>Start time <input type="datetime-local" id="modalStartTime"></label>
+        <label>End time <input type="datetime-local" id="modalEndTime"></label>
+        <label>Status
+          <select id="modalStatus">
+            <option value="available">Available</option>
+            <option value="booked">Booked</option>
+            <option value="ooo">Out of office</option>
+          </select>
+        </label>
+        <label>Description <input type="text" id="modalDescription"></label>
+        <label>Attendees (optional) <input type="text" id="modalAttendeesInput"></label>
+      </div>
+      <div class="modalFooter">
+        <button type="button" class="btn secondary" id="modalCancel">Cancel</button>
+        <button type="button" class="btn danger" id="modalDelete">Delete</button>
+        <button type="button" class="btn primary" id="modalSave">Save</button>
+      </div>
+    </div>
+  </div>
 </div>
 <script src="/script.js"></script>
 </html>

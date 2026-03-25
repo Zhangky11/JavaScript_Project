@@ -77,6 +77,16 @@ input {
     color: white;
 }
 
+/* Danger button (e.g. Delete) */
+.btn.danger {
+    background-color: #dc2626;
+    color: white;
+}
+
+.btn.danger:hover {
+    background-color: #b91c1c;
+}
+
 /* Table Styles */
 .table-container {
     margin-top: 2rem;
@@ -154,7 +164,8 @@ th {
     min-width: 180px;
 }
 
-.formRow input {
+.formRow input,
+.formRow select {
     padding: 10px 12px;
     border: 1px solid #cbd5e1;
     border-radius: 8px;
@@ -162,10 +173,34 @@ th {
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.formRow input:focus {
+.formRow input:focus,
+.formRow select:focus {
     outline: none;
     border-color: #3b82f6;
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* datetime-local: enough width for date+time+icon; date row uses two columns so it stays compact */
+.formRowDateTimes {
+    margin-top: 12px;
+}
+
+.formRowDateTimes label {
+    flex: 1 1 12rem;
+    min-width: 12rem;
+}
+
+.formRow input[type="datetime-local"] {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Title + status + button: button stays visible, does not shrink away */
+.formRowCompact .btn.primary {
+    flex: 0 0 auto;
+    align-self: flex-end;
+    white-space: nowrap;
 }
 
 /* Month view section */
@@ -229,18 +264,106 @@ th {
     margin-bottom: 8px;
 }
 
-/* Appointment slots — pill-like, readable */
+/* Appointment slots — base shape; color by status */
 .slotItem {
-    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-    border: 1px solid #bfdbfe;
     border-radius: 6px;
     padding: 6px 8px;
     margin-bottom: 6px;
     font-size: 0.8rem;
-    color: #1e40af;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
+}
+
+.slotItem.available {
+    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+    border: 1px solid #6ee7b7;
+    color: #065f46;
+}
+
+.slotItem.booked {
+    background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+    border: 1px solid #f87171;
+    color: #991b1b;
+}
+
+.slotItem.ooo {
+    background: linear-gradient(135deg, #f5f3ff 0%, #e9d5ff 100%);
+    border: 1px solid #c4b5fd;
+    color: #5b21b6;
+}
+
+/* Toolbar: search + filter */
+.calendarToolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: flex-end;
+    margin-bottom: 12px;
+}
+
+.searchLabel,
+.filterLabel {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #475569;
+}
+
+#searchInput {
+    min-width: 220px;
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+
+#statusFilterInput {
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    min-width: 160px;
+}
+
+.statusLegend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+.legendItem {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.legendSwatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    border: 1px solid #cbd5e1;
+}
+
+.legendSwatch.available {
+    background: #d1fae5;
+    border-color: #6ee7b7;
+}
+
+.legendSwatch.booked {
+    background: #fecaca;
+    border-color: #f87171;
+}
+
+.legendSwatch.ooo {
+    background: #e9d5ff;
+    border-color: #c4b5fd;
 }
 
 /* Message styles */
@@ -316,4 +439,166 @@ th {
 
 .deleteBtn:hover {
     background: #dc2626;
+}
+
+/* Month header: title centered with arrow buttons */
+.monthHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;       /* 整体居中 */
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+/* 覆盖内层 h1 的 margin，让它在 flex 中好看一点 */
+.monthHeader h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #1e293b;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+/* 左右月份切换按钮 */
+.navBtn {
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s, transform 0.1s;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+}
+
+.navBtn:hover {
+    background-color: #eff6ff;
+    border-color: #3b82f6;
+    box-shadow: 0 4px 12px rgba(148, 163, 184, 0.5);
+    transform: translateY(-1px);
+}
+
+.navBtn:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.2);
+}
+
+.navBtn:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* 小屏幕下稍微缩小按钮与间距 */
+@media (max-width: 480px) {
+    .monthHeader {
+        gap: 10px;
+    }
+    .navBtn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+    .monthHeader h1 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s, visibility 0.2s;
+}
+
+.modal.isOpen {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modalBackdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.5);
+    cursor: pointer;
+}
+
+.modalContent {
+    position: relative;
+    background: #fff;
+    border-radius: 12px;
+    max-width: 420px;
+    width: 100%;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.modalHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.modalHeader h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #1e293b;
+}
+
+.modalClose {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: #64748b;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.modalClose:hover {
+    color: #0f172a;
+}
+
+.modalBody {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modalBody label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #475569;
+}
+
+.modalBody input,
+.modalBody select {
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+
+.modalFooter {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 16px 20px;
+    border-top: 1px solid #e2e8f0;
 }
