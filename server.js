@@ -1,14 +1,6 @@
 "use strict";
 /* PPA7: Full CRUD (GET, POST, PUT, PATCH, DELETE), validation, recurring + conflict rules (bonus). */
 
-/*
- * PPA7 — function types in server.js (mostly [function declaration] + return values):
- *   loadAppointments, saveAppointments, getStatus, timesOverlap, validateAppointment,
- *   updateAppointmentFull, updateAppointmentPartial, deleteAppointment, sendJson, sendText, etc.
- * [anonymous function] + [callback]: http.createServer(function (request, response) { ... });
- *   and request.on("data", function (chunk) { ... }), request.on("end", function () { ... })
- */
-
 const http = require("http");
 const url = require("url");
 const fs = require("fs");
